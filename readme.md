@@ -178,8 +178,62 @@ Arranca el servidor de desarrollo:
 ng serve --open
 ```
 
-Visita `http://localhost:4200` y comprueba que puedes inyectar servicios, por ejemplo en un componente:
+Visita `http://localhost:4200` y comprueba que puedes inyectar servicios siguiendo estos pasos:
 
+1. **Genera un componente** para listar mascotas:
+   ```bash
+   ng generate component pet-list --standalone
+   ```
+
+2. **Inyecta el servicio** en el componente (`src/app/pet-list.component.ts`):
+   ```ts
+   import { Component, OnInit } from '@angular/core';
+   import { PetApiService, Pet } from './api';
+
+   @Component({
+     selector: 'app-pet-list',
+     standalone: true,
+     template: `
+       <h2>Lista de Mascotas</h2>
+       <ul *ngIf="pets.length">
+         <li *ngFor="let pet of pets">{{ pet.name }} (ID: {{ pet.id }})</li>
+       </ul>
+       <p *ngIf="!pets.length">No hay mascotas.</p>
+     `
+   })
+   export class PetListComponent implements OnInit {
+     pets: Pet[] = [];
+
+     constructor(private petSvc: PetApiService) {}
+
+     ngOnInit() {
+       this.petSvc.listPets().subscribe(data => this.pets = data);
+     }
+   }
+   ```
+
+3. **Registra providers** en `src/main.ts`, añadiendo el componente y el módulo API:
+   ```ts
+   import { bootstrapApplication } from '@angular/platform-browser';
+   import { importProvidersFrom } from '@angular/core';
+   import { PetListComponent } from './app/pet-list.component';
+   import { ApiModule } from './app/api/api.module';
+
+   bootstrapApplication(PetListComponent, {
+     providers: [
+       importProvidersFrom(
+         ApiModule.forRoot({ rootUrl: 'https://petstore.swagger.io/v1' })
+       )
+     ]
+   });
+   ```
+
+4. **Abre en el navegador**:
+   ```
+   http://localhost:4200
+   ```
+
+   Deberías ver la lista de mascotas cargada desde la API.
 ```ts
 constructor(private petSvc: PetApiService) {}
 
