@@ -198,19 +198,47 @@ Simplemente abre el fichero `openapi/petstore.yaml` (o como lo hayas llamado) de
 
 ### 8.2. Servir la spec como recurso estático
 
-Si quieres inspeccionar la spec desde el navegador, copia el fichero `petstore.yaml` (o `openapi.yaml`) a la carpeta de **assets** de Angular (por defecto `src/assets`):
+Copia el fichero `petstore.yaml` (o `openapi.yaml`) a la carpeta de **assets** de Angular (`src/assets/`):
 
 ```bash
 cp openapi/petstore.yaml src/assets/
 ```
 
-Ahora estará disponible en:
+#### Configuración recomendada en `angular.json`
+
+Si quieres definir rutas estáticas con objetos para controlar el output, hazlo así:
+
+```jsonc
+"assets": [
+  {
+    "glob": "**/*",
+    "input": "public",
+    "output": "/"
+  },
+  {
+    "glob": "**/*",
+    "input": "src/assets",
+    "output": "/assets"
+  }
+]
+```
+
+Con esta configuración, todos los archivos de `src/assets` (incluido `petstore.yaml`) estarán disponibles en:
 
 ```
 http://localhost:4200/assets/petstore.yaml
 ```
 
-### 8.3. Usar Swagger UI integrado
+Si prefieres la forma abreviada (sin objeto), y tu versión de Angular lo admite, basta con:
+
+```jsonc
+"assets": [
+  { "glob": "**/*", "input": "public", "output": "/" },
+  "src/assets"
+]
+```
+
+### 8.3. Usar Swagger UI integrado. Usar Swagger UI integrado. Usar Swagger UI integrado. Usar Swagger UI integrado
 
 Para una experiencia más visual, instala Swagger UI:
 
