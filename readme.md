@@ -198,47 +198,40 @@ Simplemente abre el fichero `openapi/petstore.yaml` (o como lo hayas llamado) de
 
 ### 8.2. Servir la spec como recurso estático
 
-Copia el fichero `petstore.yaml` (o `openapi.yaml`) a la carpeta de **assets** de Angular (`src/assets/`):
+Angular sirve por defecto la carpeta `public/`. Si los cambios en `angular.json` no surten efecto en modo desarrollo, puedes copiar tu spec directamente en `public/` para probar rápidamente:
 
 ```bash
-cp openapi/petstore.yaml src/assets/
+cp openapi/petstore.yaml public/
 ```
 
-#### Configuración recomendada en `angular.json`
-
-Si quieres definir rutas estáticas con objetos para controlar el output, hazlo así:
-
-```jsonc
-"assets": [
-  {
-    "glob": "**/*",
-    "input": "public",
-    "output": "/"
-  },
-  {
-    "glob": "**/*",
-    "input": "src/assets",
-    "output": "/assets"
-  }
-]
-```
-
-Con esta configuración, todos los archivos de `src/assets` (incluido `petstore.yaml`) estarán disponibles en:
+Luego accede en el navegador a:
 
 ```
-http://localhost:4200/assets/petstore.yaml
+http://localhost:4200/petstore.yaml
 ```
 
-Si prefieres la forma abreviada (sin objeto), y tu versión de Angular lo admite, basta con:
+Si prefieres usar `src/assets/`, asegúrate de:
 
-```jsonc
-"assets": [
-  { "glob": "**/*", "input": "public", "output": "/" },
-  "src/assets"
-]
-```
+1. Añadir **después** de `public` la ruta `src/assets` en tu `angular.json`:
+   ```jsonc
+   "assets": [
+     { "glob": "**/*", "input": "public", "output": "/" },
+     { "glob": "**/*", "input": "src/assets", "output": "/assets" }
+   ]
+   ```
+2. Copiar el spec con:
+   ```bash
+   cp openapi/petstore.yaml src/assets/
+   ```
+3. **Reiniciar** el servidor de desarrollo (`Ctrl+C` y `ng serve`) para que Angular recoja la nueva configuración.
+4. Acceder a:
+   ```
+   http://localhost:4200/assets/petstore.yaml
+   ```
 
-### 8.3. Usar Swagger UI integrado. Usar Swagger UI integrado. Usar Swagger UI integrado. Usar Swagger UI integrado
+Con estas opciones podrás verificar rápidamente tu spec OpenAPI en el navegador.
+
+### 8.3. Usar Swagger UI integrado. Usar Swagger UI integrado. Usar Swagger UI integrado. Usar Swagger UI integrado. Usar Swagger UI integrado. Usar Swagger UI integrado
 
 Para una experiencia más visual, instala Swagger UI:
 
