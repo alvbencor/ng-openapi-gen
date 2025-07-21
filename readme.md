@@ -89,24 +89,45 @@ Esto generará en `src/app/api`:
 ---
 
 ## 6. Opciones CLI disponibles
+                                           
+| Comando                                          | Descripción                                                                                         |
+|--------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `-i, --input <ruta>`                             | Ruta al fichero o URL de la especificación OpenAPI (JSON o YAML).                                    |
+| `-o, --output <directorio>`                      | Carpeta de salida donde se generarán los archivos (por defecto `src/app/api`).                       |
+| `-c, --config <archivo>`                         | Ruta al fichero de configuración JSON (por defecto `ng-openapi-gen.json`).                           |
+| `-h, --help`                                     | Muestra la ayuda con todas las opciones disponibles.                                                |
+| `--fetchTimeout <ms>`                            | Tiempo máximo (ms) para descargar la spec desde una URL (por defecto `20000`).                      |
+| `--defaultTag <etiqueta>`                        | Etiqueta por defecto para operaciones sin tags (por defecto `Api`).                                 |
+| `--includeTags <tag1,tag2,…>`                    | Solo genera servicios para los tags indicados (coma-separados).                                      |
+| `--excludeTags <tag1,tag2,…>`                    | Excluye servicios para los tags indicados (coma-separados).                                          |
+| `--ignoreUnusedModels`                           | Omite los modelos que no referencie ninguna operación (true por defecto).                            |
+| `--removeStaleFiles`                             | Elimina archivos en la carpeta de salida que ya no se generan (true por defecto).                    |
+| `--modelIndex <nombre|false>`                    | Fichero (sin `.ts`) que exporta todos los modelos. Pon `false` para omitir (por defecto `models`).   |
+| `--services <true|false>`                        | Genera (`true`) o no (`false`) los servicios `@Injectable`, módulo e índice de servicios.          |
+| `--serviceIndex <nombre|false>`                  | Fichero (sin `.ts`) que exporta todos los servicios. Pon `false` para omitir (por defecto `services`). |
+| `--servicePrefix <prefijo>`                      | Prefijo para las clases de servicio (vacío por defecto).                                             |
+| `--serviceSuffix <sufijo>`                       | Sufijo para las clases de servicio (por defecto `Service`).                                          |
+| `--modelPrefix <prefijo>`                        | Prefijo para las interfaces de modelo (vacío por defecto).                                           |
+| `--modelSuffix <sufijo>`                         | Sufijo para las interfaces de modelo (vacío por defecto).                                           |
+| `--configuration <clase>`                        | Nombre de la clase de configuración generada (por defecto `ApiConfiguration`).                      |
+| `--baseService <clase>`                          | Nombre de la clase base de servicio (por defecto `BaseService`).                                     |
+| `--apiService <clase>`                           | Nombre del servicio que invoca funciones directamente (vacío por defecto).                           |
+| `--requestBuilder <clase>`                       | Nombre de la clase `RequestBuilder` (por defecto `RequestBuilder`).                                  |
+| `--response <clase>`                             | Nombre de la clase de respuesta (por defecto `StrictHttpResponse`).                                  |
+| `--module <clase|false>`                         | Nombre del `NgModule` que exporta los servicios. Pon `false` para omitir (por defecto `ApiModule`).  |
+| `--enumStyle <alias|upper|pascal|ignorecase>`    | Estilo de enums raíz (por defecto `pascal`).                                                         |
+| `--enumArray`                                    | Exporta un array con los valores de cada enum en un fichero hermano.                                 |
+| `--endOfLineStyle <crlf|lf|cr|auto>`              | Normaliza finales de línea: CRLF, LF, CR o auto (por defecto `auto`).                               |
+| `--templates <ruta>`                             | Directorio con plantillas Handlebars personalizadas.                                                |
+| `--excludeParameters <p1,p2,…>`                  | Omite parámetros con esos nombres en los servicios generados (coma-separados).                      |
+| `--indexFile`                                    | Genera un `index.ts` que exporta todos los ficheros generados.                                       |
+| `--skipJsonSuffix`                               | No genera sufijos `$Json` en los métodos de los servicios.                                          |
+| `--customizedResponseType <JSON>`                | Especifica tipos de respuesta personalizados por ruta (objeto JSON).                                 |
+| `--useTempDir`                                   | Usa un directorio temporal en lugar del de salida para archivos intermedios.                         |
+| `--silent`                                       | Modo silencioso: sin salida verbose (por defecto `false`).                                           |
+| `--camelizeModelNames`                           | Cameliza nombres de modelo (true por defecto).                                                      |
+| `--keepFullResponseMediaType <boolean|JSON[]>`   | Conserva variantes completas de media types o define reglas de abreviación.                          |
 
-| Comando                       | Descripción                                             |                                                          
-| ----------------------------- | ------------------------------------------------------- | 
-| `--input <ruta>`              | Ruta al fichero o URL de la especificación OpenAPI.     |                                                          
-| `--output <directorio>`       | Carpeta de salida donde se generarán los archivos.      |                                                         
-| `--config <archivo>`          | Ruta al fichero de configuración JSON.                  |                                                          
-| `--ignoreUnusedModels`        | Omite los modelos no referenciados por ningún endpoint. |                                                          
-| `--serviceSuffix <sufijo>`    | Sufijo para las clases de servicio generadas.           |                                                          
-| `--modelSuffix <sufijo>`      | Sufijo para las interfaces de modelo generadas.         |                                                          
-| `--useUnionTypes <true/false>`| Habilita o deshabilita el uso de tipos unión en modelos.|  
-| `--removeStaleFiles`          | Elimina archivos obsoletos en la carpeta de salida.     |                                                          
-| `--defaultTag <etiqueta>`     | Tag por defecto para operaciones sin tag especificado.  |                                                          
-| `--includeTags <tag1,tag2,…>` | Solo genera servicios para los tags indicados.          |                                                          
-| `--excludeTags <tag1,tag2,…>` | Excluye servicios para los tags indicados.              |                                                          
-| `--serviceIndex<nombre/false>`| Nombre del archivo índice de servicios.                 |          
-| `--modelIndex<nombre/false>`  | Nombre del archivo índice de modelos.                   |                 
-| `--templates <ruta>`          | Carpeta con plantillas Handlebars personalizadas.       |                                                          
-| `--silent`                    | Modo silencioso, sin salida verbose.                    |                                                          
 
 > Para ver la lista completa de flags y sus detalles, ejecuta:
 >
