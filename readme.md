@@ -126,4 +126,39 @@ Esto creará en `src/app/api`:
 
 ---
 
+# Opciones del comando `ng-openapi-gen`
+
+| Opción                         | Alias | Tipo       | Descripción breve |
+|-------------------------------|-------|------------|-------------------|
+| `--input`                     | `-i`  | `string`   | Ruta al archivo OpenAPI (`.yaml` o `.json`). **Obligatorio**. |
+| `--output`                    | `-o`  | `string`   | Carpeta donde se generará el cliente Angular. |
+| `--config`                    | `-c`  | `string`   | Ruta a un archivo de configuración `ng-openapi-gen.json`. |
+| `--ignoreUnusedModels`        |       | `boolean`  | No genera modelos que no estén referenciados en operaciones. |
+| `--removeStaleFiles`          |       | `boolean`  | Elimina archivos obsoletos del directorio de salida antes de generar. |
+| `--serviceSuffix`             |       | `string`   | Sufijo para los nombres de los servicios generados (ej: `Api`). |
+| `--modelSuffix`               |       | `string`   | Sufijo para los nombres de los modelos generados. |
+| `--servicePrefix`             |       | `string`   | Prefijo para los nombres de los servicios. |
+| `--modelPrefix`               |       | `string`   | Prefijo para los nombres de los modelos. |
+| `--defaultTag`                |       | `string`   | Etiqueta predeterminada si una operación no tiene `tags`. |
+| `--includeTags`               |       | `string[]` | Solo incluye operaciones con estas etiquetas. |
+| `--excludeTags`               |       | `string[]` | Excluye operaciones con estas etiquetas. |
+| `--templates`                 |       | `string`   | Ruta a una carpeta con plantillas personalizadas de generación. |
+| `--baseService`               |       | `string`   | Nombre de un servicio base común a todos los servicios generados. |
+| `--apiService`                |       | `string`   | Nombre del servicio base de llamadas HTTP (por defecto usa `HttpClient`). |
+| `--requestBuilder`            |       | `string`   | Nombre de la clase para construir requests. |
+| `--response`                  |       | `string`   | Nombre de la clase que representa una respuesta HTTP. |
+| `--module`                    |       | `string`   | Nombre del módulo Angular donde se agrupan los servicios. |
+| `--enumStyle`                 |       | `string`   | Cómo generar enums: `string` o `enum` (por defecto: `enum`). |
+| `--enumArray`                 |       | `boolean`  | Si es `true`, los enums se generan como arrays. |
+| `--customizedResponseType`   |       | `boolean`  | Permite personalizar los tipos de respuesta de cada operación. |
+| `--keepFullResponseMediaType`|       | `boolean`  | Mantiene el tipo de contenido original en las respuestas. |
+| `--camelizeModelNames`       |       | `boolean`  | Convierte los nombres de modelos a camelCase. |
+| `--silent`                    |       | `boolean`  | Silencia la salida de consola durante la generación. |
+| `--useTempDir`               |       | `boolean`  | Usa un directorio temporal durante la generación. |
+| `--indexFile`                |       | `string`   | Ruta personalizada para el archivo `index.ts` generado. |
+| `--skipJsonSuffix`           |       | `boolean`  | No añade `.json` a los tipos MIME al generar las rutas. |
+| `--fetchTimeout`             |       | `number`   | Tiempo de espera para operaciones de red (en milisegundos). |
+
+> Puedes usar `ng-openapi-gen --help` para ver esta lista en tu terminal.
+
 
