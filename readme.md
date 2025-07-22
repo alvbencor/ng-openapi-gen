@@ -1,6 +1,5 @@
 # angular-petstore-generator
 
-Este README muestra desde cero cómo crear un proyecto Angular llamado **angular-petstore-generator**, agregar tu spec OpenAPI de Petstore y generar un cliente tipado con **ng-openapi-gen**.
 
 ---
 
