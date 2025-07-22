@@ -1,4 +1,4 @@
-# angular-petstore-generator
+# ng-openapi-gen
 
 
 ---
