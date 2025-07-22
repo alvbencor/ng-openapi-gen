@@ -115,6 +115,18 @@ npx ng-openapi-gen --input openapi/petstore.yaml \
 > npx ng-openapi-gen --input openapi/petstore.yaml --output src/app/api --serviceSuffix ApiService --ignoreUnusedModels true --indexFile true --modelIndex models --serviceIndex services --module ApiModule
 > ```
 
+| Opción                          | Explicación                                                                                                                              |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `--input openapi/petstore.yaml` | Especifica la ruta al archivo OpenAPI (`.yaml` o `.json`) desde el cual se generará el cliente Angular.                                  |
+| `--output src/app/api`          | Define la carpeta donde se generarán los servicios, modelos, y archivos relacionados.                                                    |
+| `--serviceSuffix ApiService`    | Añade el sufijo `ApiService` a los nombres de los servicios generados. Ej: `PetApiService`, `StoreApiService`.                           |
+| `--ignoreUnusedModels true`     | Evita generar modelos que no estén referenciados directamente por operaciones en el contrato. Reduce el código innecesario.              |
+| `--indexFile true`              | Genera un archivo `index.ts` en el directorio raíz de salida (`src/app/api/index.ts`) que reexporta todos los servicios y modelos.       |
+| `--modelIndex models`           | Crea un archivo `models.ts` que reexporta todos los modelos generados. Facilita la importación agrupada.                                 |
+| `--serviceIndex services`       | Crea un archivo `services.ts` que reexporta todos los servicios generados. Útil para importaciones más limpias.                          |
+| `--module ApiModule`            | Genera un módulo Angular (`ApiModule`) que incluye todos los servicios generados, permitiendo su importación sencilla en el `AppModule`. |
+
+
 Esto creará en `src/app/api`:
 
 - `api.module.ts` (modulo con todos los servicios)
